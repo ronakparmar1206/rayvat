@@ -1,5 +1,5 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userLoginApi } from "../src/redux/slices/authSlice";
 import { useNavigate } from "react-router-dom";
@@ -24,6 +24,14 @@ const Login = () => {
     setusername("");
     navigate("/");
   };
+  const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    if (token) {
+      navigate("/");
+    }
+  }, []);
+
   return (
     <Box
       sx={{
